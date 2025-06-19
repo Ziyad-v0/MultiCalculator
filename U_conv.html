@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unit Converter</title>
+    <link rel="stylesheet" href="SUcon.css">
+  </head>
+  <body>
+    <div class="navbar" >
+      <img src="img/number-pi.png" onclick="location.href='home.html'" alt="شعار" />
+      <button onclick="location.href='SimpleCal.html'">Calculator</button>
+      <button onclick="location.href='S_conv.html'">Number Converter</button>
+      <button onclick="location.href='Stat.html'">Charter</button>
+      <button onclick="location.href='U_conv.html'">Unit Converter</button>
+    </div>
+    <h1 align="center">Unit Converter</h1>
+    <form class="container">
+      <div class="item1">
+        <label for="number">Enter a number:</label>
+        <input type="text" id="number" name="number" required>
+        <br><br>
+        <label for="from">Convert from:</label>
+        <select class="boxes" id="from" name="from">
+          <option value="centimeter">Centimeter</option>
+          <option value="meter">Meter</option>
+          <option value="kilometer">Kilometer</option>
+        </select>
+        <br><br>
+        <label for="to">Convert to:</label>
+        <select class="boxes" id="to" name="to">
+          <option value="centimeter">Centimeter</option>
+          <option value="meter">Meter</option>
+          <option value="kilometer">Kilometer</option>
+        </select>
+        <br><br>
+        <input type="button" value="Convert" onclick="convert()">
+      </div>
+      <div class="item2">
+        <h4>result:</h4>
+        <h1 id="result"></h1>  
+      </div>
+    </form>
+
+    <script>
+      function convert() {
+        var number = document.getElementById("number").value;
+        var from = document.getElementById("from").value;
+        var to = document.getElementById("to").value;
+        var result = "";
+
+        if (from == "centimeter") {
+          if (to == "centimeter") {
+            result = number;
+          } else if (to == "meter") {
+            result = number / 100;
+          } else if (to == "kilometer") {
+            result = number / 100000;
+          }
+        } else if (from == "meter") {
+          if (to == "centimeter") {
+            result = number * 100;
+          } else if (to == "meter") {
+            result = number;
+          } else if (to == "kilometer") {
+            result = number / 1000;
+          }
+        } else if (from == "kilometer") {
+          if (to == "centimeter") {
+            result = number * 100000;
+          } else if (to == "meter") {
+            result = number * 1000;
+          } else if (to == "kilometer") {
+            result = number;
+          }
+        }
+        document.getElementById("result").innerHTML = result;
+      }
+    </script>
+  </body>
+</html>

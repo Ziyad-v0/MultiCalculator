@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Charter</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="navbar">
+    <img src="img/number-pi.png" onclick="location.href='home.html'" alt="شعار" />
+    <button onclick="location.href='SimpleCal.html'">Calculator</button>
+    <button onclick="location.href='S_conv.html'">Number Converter</button>
+    <button onclick="location.href='Stat.html'">Charter</button>
+    <button onclick="location.href='U_conv.html'">Unit Converter</button>
+  </div>
+  <h1 class="item1">Charter</h1>
+    <div class="container" >
+      <br><br>
+        <div class="item2">
+          <label for="studentName">student name:</label>
+          <input type="text" id="studentName" />
+          <label for="studentGrade">student grade:</label>
+          <input type="number" id="studentGrade" />
+          <button onclick="addStudentGrade()">add</button>
+        </div>
+        <canvas class="item3" id="myChart"></canvas>
+        <canvas class="item4" id="myPieChart"></canvas>
+
+        <table class="item5" border="1" width = "100%">
+          <tbody>
+
+            <tr>
+              <td>mean</td>
+              <td id = "mean"></td>
+            </tr>
+
+            <tr>
+              <td>median</td>
+              <td id = "median"></td>
+            </tr>
+
+            <tr>
+              <td>mode</td>
+              <td id = "mode"></td>
+            </tr>
+
+            <tr>
+              <td>range</td>
+              <td id = "range"></td>
+            </tr>
+
+            <tr>
+              <td>variance</td>
+              <td id = "variance"></td>
+            </tr>
+
+            <tr>
+              <td>standard diviasion</td>
+              <td id = "stdDev"></td>
+            </tr>
+
+          </tbody>
+        </table>
+        <ul class="student-list" id="studentList" class="item6"></ul>
+        <p id = "demo"></p>
+      </div>
+    
+      <script>
+        var labels = [];
+        var data = [];
+    
+        var chartData = {
+          labels: labels,
+          datasets: [{
+            label: 'grades',
+            data: data,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        };
+    
+        var pieChartData = {
+          labels: labels,
+          datasets: [{
+            label: 'grades',
+            data: data,
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        };
+    
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+          type: 'bar',
+          data: chartData,
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+    
+        var pieCtx = document.getElementById('myPieChart').getContext('2d');
+        var pieChart = new Chart(pieCtx, {
+          type: 'pie',
+          data: pieChartData,
+        });
+    
+        function addStudentGrade() {
+          var studentNameInput = document.getElementById('studentName');
+          var studentGradeInput = document.getElementById('studentGrade');
+    
+          var studentName = studentNameInput.value;
+          var studentGrade = parseInt(studentGradeInput.value);
+    
+          if (studentName && studentGrade) {
+            labels.push(studentName);
+            data.push(studentGrade);
+    
+            updateStudentList();
+    
+            studentNameInput.value = '';
+            studentGradeInput.value = '';
+    
+            chart.update();
+            pieChart.update();
+          }
+        }
+    
+        function updateStudentList() {
+          var studentList = document.getElementById('studentList');
+          studentList.innerHTML = '';
+    
+          for (var i = 0; i < labels.length; i++) {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(labels[i] + ': ' + data[i]));
+            
+            var deleteButton = document.createElement('button');
+            deleteButton.appendChild(document.createTextNode('delete'));
+            deleteButton.onclick = (function(index) {
+              return function() {
+                labels.splice(index, 1);
+                data.splice(index, 1);
+                updateStudentList();
+                chart.update();
+                pieChart.update();
+              };
+            })(i);
+    
+            li.appendChild(deleteButton);
+            studentList.appendChild(li);
+             }
+          
+          
+          var sum = 0;
+          for (var i = 0; i < data.length; i++){
+            sum = sum + data[i];
+          }
+
+          var meanVal = sum / data.length;
+          var medianVal = median(data);
+          var rangeVal = range(data);
+          var modeVal = mode(data);
+          var varianceVal = calculateVariance(data);
+          var stdDevVal = Math.sqrt(varianceVal);
+          
+          document.getElementById("mean").innerHTML = meanVal;
+          document.getElementById("median").innerHTML = medianVal;
+          document.getElementById("range").innerHTML = rangeVal;
+          document.getElementById("mode").innerHTML = modeVal;
+          document.getElementById("variance").innerHTML = varianceVal;
+          document.getElementById("stdDev").innerHTML = stdDevVal;   
+        }
+
+        function median(arr) {
+          if (arr.length === 0) {
+            return 0
+          }
+
+          arr.sort((a, b) => a - b);
+
+          const midIndex = Math.floor(arr.length / 2);
+
+          if (arr.length % 2 === 0) {
+            return (arr[midIndex] + arr[midIndex - 1]) / 2;
+          } else {
+            return arr[midIndex];
+          }
+        }
+
+        function range(arr) {
+          if (arr.length === 0) {
+            return 0
+          }
+
+          let minValue = arr[0];
+          let maxValue = arr[0];
+
+          for (let i = 1; i < arr.length; i++) {
+            if (arr[i] < minValue) {
+              minValue = arr[i];
+            } else if (arr[i] > maxValue) {
+              maxValue = arr[i];
+            }
+          }
+
+          return maxValue - minValue;
+        }
+
+        function mode(arr) {
+          if (arr.length === 0) {
+            return 0
+          }
+          const counts = {};
+          for (const num of arr) {
+            if (counts[num]) {
+              counts[num]++;
+            } else {
+              counts[num] = 1;
+            }
+          }
+          let maxCount = 0;
+          let mode = null;
+          for (const num in counts) {
+            const count = counts[num];
+            if (count > maxCount) {
+              maxCount = count;
+              mode = num;
+            }
+          }
+          return mode;
+        }
+
+        function calculateVariance(arr) {
+          if (arr.length === 0) {
+            return 0
+          }
+
+          const mean = arr.reduce((acc, val) => acc + val, 0) / arr.length;
+
+          const squaredDeviations = arr.map((val) => Math.pow(val - mean, 2));
+          const variance = squaredDeviations.reduce((acc, val) => acc + val, 0) / arr.length;
+          return variance
+        }    
+      </script>
+</body>
+</html>

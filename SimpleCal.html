@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+      margin: 0;
+    }
+    .calculator {
+      width: 300px;
+      background-color: #989595;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid black;
+      border-radius: 20px;
+    }
+    .container {
+      max-width: 700px;
+      height: 500px;
+      margin: 0 auto;
+      background-color: #dde4f9;
+      padding-top:130px ;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    .calculator-display {
+      width: 100%;
+      height: 50px;
+      text-align: right;
+      font-size: 20px;
+      margin-bottom: 10px;
+      border-radius: 20px;
+      background-color: #ece6e6;
+    }
+    .calculator-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 5px;
+    }
+    .calculator-button {
+      width: 100%;
+      height: 50px;
+      text-align: center;
+      font-size: 20px;
+      cursor: pointer;
+      background-color: black;
+      color: white;
+      border-radius: 12px;
+      border: solid black;
+    }
+    .calculator-button.equal {
+      grid-column: span 2;
+    }
+    .calculator-button:hover {
+      background-color: #222121;
+    }
+    .navbar {
+    overflow: hidden;
+  }
+    .navbar button {
+      background-color: rgb(57, 126, 230);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      font-size: 16px;
+      cursor: pointer;
+      float: right;
+      margin: 8px;
+    }
+    button:hover{
+        background-color:rgb(8, 100, 238);
+    }
+    .navbar img {
+      height: 3%;
+      width: 3%;
+      margin: 5px;
+      float: left;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <img src="img/number-pi.png" onclick="location.href='home.html'" alt="شعار" />
+    <button onclick="location.href='SimpleCal.html'">Calculator</button>
+    <button onclick="location.href='S_conv.html'">Number Converter</button>
+    <button onclick="location.href='Stat.html'">Charter</button>
+    <button onclick="location.href='U_conv.html'">Unit Converter</button>
+  </div>
+  <h1 align="center">Calculator</h1>
+  <div class="container">
+    <div class="calculator">
+      <input type="text" class="calculator-display" id="display">
+      <div class="calculator-buttons">
+       
+        <button class="calculator-button" onclick="clearDisplay()">C</button>
+        <button class="calculator-button" onclick="numberClick('7')">7</button>
+        <button class="calculator-button" onclick="numberClick('8')">8</button>
+        <button class="calculator-button" onclick="numberClick('9')">9</button>
+        <button class="calculator-button" onclick="operatorClick('/')">/</button>
+
+        <button class="calculator-button" onclick="numberClick('4')">4</button>
+        <button class="calculator-button" onclick="numberClick('5')">5</button>
+        <button class="calculator-button" onclick="numberClick('6')">6</button>
+        <button class="calculator-button" onclick="operatorClick('*')">x</button>
+
+        <button class="calculator-button" onclick="numberClick('1')">1</button>
+        <button class="calculator-button" onclick="numberClick('2')">2</button>
+        <button class="calculator-button" onclick="numberClick('3')">3</button>
+        <button class="calculator-button" onclick="operatorClick('+')">+</button>
+
+        <button class="calculator-button" onclick="numberClick('0')">0</button>
+        <button class="calculator-button" onclick="negateDisplay()">+/-</button>
+        <button class="calculator-button" onclick="decimalClick()">.</button>
+        <button class="calculator-button" onclick="operatorClick('-')">-</button>
+        <button class="calculator-button delete" onclick="deleteLastDigit()">DEL</button>
+        <button class="calculator-button equal" onclick="evaluateExpression()">=</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function numberClick(num) {
+      const display = document.getElementById('display');
+      display.value += num;
+    }
+
+    function operatorClick(operator) {
+      const display = document.getElementById('display');
+      display.value += operator;
+    }
+
+    function clearDisplay() {
+      const display = document.getElementById('display');
+      display.value = '';
+    }
+
+    function negateDisplay() {
+      constdisplay = document.getElementById('display');
+      display.value = -display.value;
+    }
+
+    function decimalClick() {
+      const display = document.getElementById('display');
+      if (!display.value.includes('.')) {
+        display.value += '.';
+      }
+    }
+
+    function evaluateExpression() {
+      const display = document.getElementById('display');
+      const expression = display.value;
+      const result = eval(expression);
+      display.value = result;
+    }
+    function deleteLastDigit() {
+      const display = document.getElementById('display');
+      display.value = display.value.slice(0, -1);
+    }
+  </script>
+</body>
+</html>
+

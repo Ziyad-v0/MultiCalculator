@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <style>
+
+      @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #dde4f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333333;
+            text-align: center;
+            margin-top: 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            width: 300px;
+        }
+        a {
+            display: block;
+            padding: 20px;
+            background-color: rgb(57, 126, 230);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+        a:hover {
+            background-color: rgb(8, 100, 238);
+        }
+        img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 20px;
+        }
+        .navbar {
+      background-color: dde4f9;
+      overflow: hidden;
+    }
+    .navbar button {
+      background-color: rgb(57, 126, 230);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      font-family: 'Kanit', sans-serif;
+      font-size: 16px;
+      cursor: pointer;
+      float: right;
+      margin: 8px;
+    }
+    button:hover{
+        background-color:rgb(8, 100, 238);
+    }
+    .navbar img {
+      height: 3%;
+      width: 3%;
+      margin: 5px;
+      float: left;
+      border-radius: 0px;
+    }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="img/number-pi.png" onclick="location.href='home.html'" alt="شعار" />
+        <button onclick="location.href='SimpleCal.html'">Calculator</button>
+        <button onclick="location.href='S_conv.html'">Number Converter</button>
+        <button onclick="location.href='Stat.html'">Charter</button>
+        <button onclick="location.href='U_conv.html'">Unit Converter</button>
+      </div>
+      <br>
+    <div class="container">
+        <ul>
+            <li>
+                <img src="img/Calculater.png" width="300" height="300">
+                <a href="SimpleCal.html">Calculator</a>
+            </li>
+            <li>
+                <img src="img/S_conv.png" width="300" height="300">
+                <a href="S_conv.html">Number Converter</a>
+            </li>
+            <li>
+                <img src="img/Stat.png" width="300" height="300">
+                <br>
+                <a href="Stat.html">Charter</a>
+            </li>
+            <li>
+                <img src="img/U_conv.png" width="300" height="300">
+                <br>
+                <a href="U_conv.html">Unit Converter</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

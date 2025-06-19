@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Number System Converter</title>
+    <link rel="stylesheet" href="SUcon.css">
+  </head>
+  <body>
+    <div class="navbar">
+      <img src="img/number-pi.png" onclick="location.href='home.html'" alt="شعار" />
+      <button onclick="location.href='SimpleCal.html'">Calculator</button>
+      <button onclick="location.href='S_conv.html'">Number Converter</button>
+      <button onclick="location.href='Stat.html'">Charter</button>
+      <button onclick="location.href='U_conv.html'">Unit Converter</button>
+    </div>
+
+    <h1 align="center">Number System Converter</h1>
+    <form class="container">
+      <div class="item1">
+        <label for="number">Enter a number:</label>
+        <input type="text" id="number" name="number" required>
+        <br><br>
+        <label for="from">Convert from:</label>
+        <select class="boxes" id="from" name="from">
+          <option value="binary">Binary</option>
+          <option value="octal">Octal</option>
+          <option value="decimal">Decimal</option>
+          <option value="hexadecimal">Hexadecimal</option>
+        </select>
+        <br><br>
+        <label for="to">Convert to:</label>
+        <select class="boxes" id="to" name="to">
+          <option value="binary">Binary</option>
+          <option value="octal">Octal</option>
+          <option value="decimal">Decimal</option>
+          <option value="hexadecimal">Hexadecimal</option>
+        </select>
+        <br><br>
+        <input type="button" value="Convert" onclick="convert()">
+        <br>
+      </div>
+      <div class="item2">
+        <h4>result:</h4>
+        <h1 id="result"></h1>
+      </div>
+    </form>
+
+    <script>
+      function convert() {
+        var number = document.getElementById("number").value;
+        var from = document.getElementById("from").value;
+        var to = document.getElementById("to").value;
+        var result = "";
+
+        // Perform the conversion based on the selected options
+        if (from === "binary") {
+          if (to === "binary") {
+            result = number;
+          } else if (to === "octal") {
+            result = parseInt(number, 2).toString(8);
+          } else if (to === "decimal") {
+            result = parseInt(number, 2).toString(10);
+          } else if (to === "hexadecimal") {
+            result = parseInt(number, 2).toString(16);
+          }
+        } else if (from === "octal") {
+          if (to === "binary") {
+            result = parseInt(number, 8).toString(2);
+          } else if (to === "octal") {
+            result = number;
+          } else if (to === "decimal") {
+            result = parseInt(number, 8).toString(10);
+          } else if (to === "hexadecimal") {
+            result = parseInt(number, 8).toString(16);
+          }
+        } else if (from === "decimal") {
+          if (to === "binary") {
+            result = parseInt(number, 10).toString(2);
+          } else if (to === "octal") {
+            result = parseInt(number, 10).toString(8);
+          } else if (to === "decimal") {
+            result = number;
+          } else if (to === "hexadecimal") {
+            result = parseInt(number, 10).toString(16);
+          }
+        } else if (from === "hexadecimal") {
+          if (to === "binary") {
+            result = parseInt(number, 16).toString(2);
+          } else if (to === "octal") {
+            result = parseInt(number, 16).toString(8);
+          } else if (to === "decimal") {
+            result = parseInt(number, 16).toString(10);
+          } else if (to === "hexadecimal") {
+            result = number;
+
+          }
+        }
+
+        // Display the result
+        document.getElementById("result").innerHTML = result;
+      }
+    </script>
+  </body>
+</html>

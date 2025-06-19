@@ -1,0 +1,142 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 20px;
+}
+h1 {
+  text-align: center;
+  color: #333;
+}
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #dde4f9;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  gap: 10px;
+}
+.item1 {
+  grid-column: 1 / 3;
+}
+.item2 {
+  grid-column: 1 / 3;
+}
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+}
+input[type="text"],
+input[type="number"] {
+  width: 50%;
+  padding: 10px;
+  border: 1px solid #d0cece;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #f6f1f1;
+  margin-bottom: 10px;
+}
+button {
+  background-color: rgb(57, 126, 230);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+button:hover {
+  background-color: rgb(8, 100, 238);
+}
+.boxes{
+  width: 50%;
+  padding: 10px 10px;
+}
+input[type="button"]{
+  width: 50%;
+}
+/*for static*/
+canvas {
+  max-width: 400px;
+  max-height: 300px;
+  margin-top: 20px;
+  display: inline;
+}
+.student-list {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #eee;
+  border-radius: 4px;
+}
+.student-list li {
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+table {
+  border-collapse: collapse;
+  width: 50%;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  text-align: left;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+} 
+table th {
+  background-color: #ff9800;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #ccc;
+}
+table tr:nth-child(even) td {
+  background-color: #f2f2f2;
+}
+table tr:hover td {
+  background-color: #ffedcc;
+}
+table td {
+  background-color: #fff;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+}
+.navbar {
+  background-color: #f2f2f2;
+  overflow: hidden;
+}
+.navbar button {
+    background-color: rgb(57, 126, 230);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+    margin: 8px;
+  }
+.navbar button:hover{
+    background-color:rgb(8, 100, 238);
+}
+.navbar img {
+    height: 3%;
+    width: 3%;
+    margin: 5px;
+    float: left;
+  }
